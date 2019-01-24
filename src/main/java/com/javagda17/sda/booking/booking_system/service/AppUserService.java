@@ -1,6 +1,7 @@
 package com.javagda17.sda.booking.booking_system.service;
 
 import com.javagda17.sda.booking.booking_system.model.AppUser;
+import com.javagda17.sda.booking.booking_system.model.dto.AppUserDto;
 import com.javagda17.sda.booking.booking_system.respository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,15 +22,15 @@ public class AppUserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public boolean register(String name, String surname, String email,String phoneNumber, String username, String password) {
+    public boolean register(AppUserDto dto) {
         AppUser appUser = new AppUser();
-        appUser.setUsername(username);
-        appUser.setPassword(bCryptPasswordEncoder.encode(password));
+        appUser.setUsername(dto.getUsername());
+        appUser.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
         appUser.getUserRoles().add(userRoleService.getUserRole());
-        appUser.setName(name);
-        appUser.setSurname(surname);
-        appUser.setEmail(email);
-        appUser.setPhoneNumber(phoneNumber);
+        appUser.setName(dto.getName());
+        appUser.setSurname(dto.getSurname());
+        appUser.setEmail(dto.getEmail());
+        appUser.setPhoneNumber(dto.getPhoneNumber());
 
         try {
             appUserRepository.saveAndFlush(appUser);
