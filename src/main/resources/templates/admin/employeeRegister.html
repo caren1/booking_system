@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>Register Form</title>
+</head>
+<body>
+<!--i18n-->
+<th:block th:include="template :: navigator"/>
+<th:block th:include="template :: message"/>
+<main role="main" class="container">
+    <h1 class="table-head-title">Register Page</h1>
+    <form th:action="@{/register}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input class="form-control" type="text" id="surname" name="surname">
+        </div>
+        <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input class="form-control" type="text" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input class="form-control" type="text" id="phoneNumber" name="phoneNumber">
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password">
+        </div>
+        <div class="form-group">
+            <label for="password-confirm">Password Confirm</label>
+            <input class="form-control" type="password" id="password-confirm" name="passwordConfirm">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+</main>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>

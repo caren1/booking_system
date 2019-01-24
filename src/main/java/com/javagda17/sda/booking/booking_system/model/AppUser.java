@@ -38,7 +38,7 @@ public class AppUser {
     private Set <UserRole> userRoles = new HashSet<>();
 
     @ManyToMany(mappedBy = "participantSet")
-    private Set <Meeting> meetingSet;
+    private Set <Meeting> meetingSet = new HashSet<>();
 
     @OneToOne
     private EmployeeServices employeeServices;

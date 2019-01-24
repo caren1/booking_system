@@ -26,4 +26,13 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/clientRegister")
+    public String getClientRegisterPage(){
+        return "admin/clientRegister";
+    }
+    @GetMapping("/employeeRegister")
+    public String getEmployeeRegisterPage(){
+        return "admin/employeeRegister";
+    }
+
 }
