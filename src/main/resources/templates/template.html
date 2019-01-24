@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
+
+<th:block th:fragment="scripts_header">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</th:block>
+
+<th:block th:fragment="scripts_footer">
+    <script th:href="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+    <script th:href="@{/webjars/popper.js/1.14.4/popper.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"></script>
+</th:block>
+
+<th:block th:fragment="navigator">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">Security App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated() && hasRole('ADMIN')">
+                    <a class="nav-link" th:href="@{/admin/users}">User Management</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</th:block>
+
+<th:block th:fragment="message">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 th:text="${message}"></h3>
+        </div>
+    </div>
+</th:block>
+
+</html>

@@ -1,6 +1,7 @@
 package com.javagda17.sda.booking.booking_system.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
