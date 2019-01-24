@@ -53,9 +53,9 @@ public class DataInitializer implements
 //        appUser.setPassword(password);
 
         // odnajdujemy w bazie danych wszystkie uprawnienia które należy nadać użytkownikowi
-        Set<UserRole> userRoles = new HashSet<>();
+        Set<UserRole> userRoles2 = new HashSet<>();
         for (String role : roles) {
-            userRoles.add(findRole(role));
+            userRoles2.add(findRole(role));
             // zbieramy uprawnienia do setu
         }
 
@@ -63,7 +63,7 @@ public class DataInitializer implements
         AppUser appUser = AppUser.builder()
                 .username(username)
                 .password(bCryptPasswordEncoder.encode(password))
-                .userRoles(userRoles)
+                .userRoles(userRoles2)
                 .build();
 
         // zapisujemy instancję w bazie
@@ -73,9 +73,8 @@ public class DataInitializer implements
     private UserRole findRole(String role) {
         Optional<UserRole> userRoleOptional = userRoleRepository.findByName(role);
         if (userRoleOptional.isPresent()) {
-            UserRole userRole = userRoleOptional.get();
 
-            return userRole;
+            return userRoleOptional.get();
         }
         throw new DataIntegrityViolationException("User role does not exist. " +
                 "Try fixing user role called: " + role + " in Your data initializer.");
@@ -104,7 +103,7 @@ public class DataInitializer implements
      */
     private void createRole(String role) {
         UserRole createdRole = new UserRole(null, role);
-        userRoleRepository.saveAndFlush(createdRole);
+        userRoleRepository.save(createdRole);
     }
 
     /**

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -23,16 +25,19 @@ public class AppUser {
 
     private String name;
     private String surname;
+
+    @Email
     private String email;
+
     private String phoneNumber;
 
     @OneToOne
     private Company company;
 
-    @OneToMany
-    private Set <UserRole> userRoles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set <UserRole> userRoles = new HashSet<>();
 
-    @OneToMany
+    @ManyToMany(mappedBy = "participantSet")
     private Set <Meeting> meetingSet;
 
     @OneToOne

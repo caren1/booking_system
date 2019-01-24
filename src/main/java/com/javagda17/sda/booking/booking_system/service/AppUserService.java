@@ -21,16 +21,15 @@ public class AppUserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public boolean register(String name, String surname, String email,
-                            String phoneNumber, String username, String password) {
+    public boolean register(String username, String password) {
         AppUser appUser = new AppUser();
         appUser.setUsername(username);
         appUser.setPassword(bCryptPasswordEncoder.encode(password));
         appUser.getUserRoles().add(userRoleService.getUserRole());
-        appUser.setName(name);
-        appUser.setSurname(surname);
-        appUser.setEmail(email);
-        appUser.setPhoneNumber(phoneNumber);
+//        appUser.setName(name);
+//        appUser.setSurname(surname);
+//        appUser.setEmail(email);
+//        appUser.setPhoneNumber(phoneNumber);
 
         try {
             appUserRepository.saveAndFlush(appUser);

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,12 +28,11 @@ public class Meeting {
 
     @OneToOne
     private Duties duties;
-    @ManyToOne
-    private AppUser client;
 
     private Double totalPrice;
-    @ManyToOne
-    private AppUser employee;
+
+    @ManyToMany
+    private Set<AppUser> participantSet;
 
 
 

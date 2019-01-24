@@ -7,11 +7,9 @@
     <title>Register Form</title>
 </head>
 <body>
-
 <!--i18n-->
 <th:block th:include="template :: navigator"/>
 <th:block th:include="template :: message"/>
-
 <main role="main" class="container">
     <h1 class="table-head-title">Register Page</h1>
     <form th:action="@{/register}" method="post">
@@ -43,7 +41,6 @@
             <label for="password-confirm">Password Confirm</label>
             <input class="form-control" type="password" id="password-confirm" name="passwordConfirm">
         </div>
-
         <button class="btn btn-primary" type="submit">Register</button>
     </form>
 </main>
