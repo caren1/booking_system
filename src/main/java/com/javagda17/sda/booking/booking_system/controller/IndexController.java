@@ -42,7 +42,7 @@ public class IndexController {
             return "redirect:/register?error=Passwords do not match";
         }
 
-        boolean result = appUserService.register(username, password);
+        boolean result = appUserService.register(name, surname, email, phoneNumber,username, password);
 
         if (!result) {
             return "redirect:/register?error=Error while registerying. Probably username exists.";
