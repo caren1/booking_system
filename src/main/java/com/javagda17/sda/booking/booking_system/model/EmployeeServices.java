@@ -13,11 +13,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeServices {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String category;
     @OneToOne
     private WorkingHours workingHours;
 

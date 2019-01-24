@@ -31,8 +31,10 @@ public class AppUser {
 
     @OneToMany
     private Set <UserRole> userRoles;
+
     @OneToMany
     private Set <Meeting> meetingSet;
+
     @OneToOne
     private EmployeeServices employeeServices;
 
