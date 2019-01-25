@@ -36,21 +36,11 @@ public class DataInitializer implements
 
     private void checkAndLoadUsers() {
         if (!checkUser("admin")) {
-            createUser("admin", "admin", "ROLE_USER", "ROLE_ADMIN");
-        }
-        // dodaj user'a!
-        if (!checkUser("user")) {
-            createUser("user", "user", "ROLE_USER");
-        }
-        if (!checkUser("ispy")) {
-            createUser("ispy", "ispy", "ROLE_USER", "ROLE_SPY");
+            createUser("admin", "admin", "ROLE_CLIENT", "ROLE_ADMIN");
         }
     }
 
     private void createUser(String username, String password, String... roles) {
-//        AppUser appUser = new AppUser();
-//        appUser.setUsername(username);
-//        appUser.setPassword(password);
 
         // odnajdujemy w bazie danych wszystkie uprawnienia które należy nadać użytkownikowi
         Set<UserRole> userRoles2 = new HashSet<>();
@@ -85,8 +75,8 @@ public class DataInitializer implements
     }
 
     private void checkAndLoadRoles() {
-        if (!checkRole("ROLE_USER")) {
-            createRole("ROLE_USER");
+        if (!checkRole("ROLE_CLIENT")) {
+            createRole("ROLE_CLIENT");
         }
         if (!checkRole("ROLE_ADMIN")) {
             createRole("ROLE_ADMIN");

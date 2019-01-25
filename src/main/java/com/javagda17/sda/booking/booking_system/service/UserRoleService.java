@@ -14,15 +14,6 @@ public class UserRoleService {
     @Autowired
     private UserRoleRepository userRoleRepository;
 
-    public UserRole getUserRole() {
-        Optional<UserRole> optionalUserRole = userRoleRepository.findByName("ROLE_USER");
-        if (optionalUserRole.isPresent()) {
-            return optionalUserRole.get();
-        }
-
-        throw new DataIntegrityViolationException("USER_ROLE should exist in database.");
-    }
-
     public UserRole getAdminRole() {
         Optional<UserRole> optionalUserRole = userRoleRepository.findByName("ROLE_ADMIN");
         if (optionalUserRole.isPresent()) {

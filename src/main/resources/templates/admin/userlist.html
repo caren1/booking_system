@@ -14,18 +14,25 @@
 
     <div class="row col-md-12">
         <div class="row col-md-12">
-            <div class="col-md-1">Id</div>
-            <div class="col-md-2">Username</div>
+            <div class="col-md-1">Name</div>
+            <div class="col-md-1">Surname</div>
             <div class="col-md-2">Email</div>
             <div class="col-md-2">Phone number</div>
-            <div class="col-md-5">Roles</div>
+            <div class="col-md-2">Company Name</div>
+            <div class="col-md-2">Company NIP</div>
+            <div class="col-md-2">Company Adress</div>
         </div>
         <div class="row col-md-12" th:each="user,iter : ${user_list}">
-            <div class="col-md-1" th:text="${user.getId()}"></div>
-            <div class="col-md-2" th:text="${user.getUsername()}"></div>
+            <div class="col-md-1" th:text="${user.getName()}"></div>
+            <div class="col-md-1" th:text="${user.getSurname()}"></div>
             <div class="col-md-2" th:text="${user.getEmail()}"></div>
             <div class="col-md-2" th:text="${user.getPhoneNumber()}"></div>
-            <div class="col-md-5" th:text="${user_roles[iter.index]}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getCompanyName()}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getNIP()}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getAddress()}"></div>
+
+            <div th:if="${user.getCompany() == null}" class="col-md-8">
+            </div>
         </div>
     </div>
 </main>
