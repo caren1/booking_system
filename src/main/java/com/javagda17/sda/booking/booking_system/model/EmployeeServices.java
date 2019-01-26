@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,14 +19,15 @@ public class EmployeeServices {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String employeeServicesName;
+
     @OneToOne
     private WorkingHours workingHours;
 
     @OneToMany
-    private Set<UnusualDays>daysOff;
-
+    private Set<UnusualDays>daysOff = new HashSet<>();
 
     @OneToMany
-    private Set <ServiceType> serviceTypes;
+    private Set <ServiceType> serviceTypes = new HashSet<>();
 
 }

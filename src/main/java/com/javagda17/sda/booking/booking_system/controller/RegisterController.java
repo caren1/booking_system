@@ -54,6 +54,7 @@ public class RegisterController {
         if (!dto.getPassword().equals(dto.getPasswordConfirm())) {
             return "redirect:/admin/register?error=Passwords do not match";
         }
+
         boolean result = appUserService.register(dto, workingHoursDto, serviceType);
 
         if (!result) {

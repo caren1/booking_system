@@ -73,6 +73,8 @@ public class AppUserService {
     public boolean register(AppUserDto dto, WorkingHoursDto workingHoursDto, String serviceType) {
 
         EmployeeServices employeeServices = new EmployeeServices();
+        employeeServices.setEmployeeServicesName(dto.getName() + " " + dto.getSurname() + "employee service");
+
 
         WorkingHours workingHours = new WorkingHours();
         workingHours.setStartingHour(workingHoursDto.getStartingHour());

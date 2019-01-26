@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -18,5 +19,5 @@ public class Hall {
 
     private String hallName;
     @OneToMany
-    private Set <Meeting> meetingSet;
+    private Set <Meeting> meetingSet = new HashSet<>();
 }
