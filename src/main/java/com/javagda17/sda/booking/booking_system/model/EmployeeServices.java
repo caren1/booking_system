@@ -24,7 +24,8 @@ public class EmployeeServices {
     @OneToMany
     private Set<UnusualDays>daysOff;
 
+
     @OneToMany
-    private Set <Duties> duties;
+    private Set <ServiceType> serviceTypes;
 
 }

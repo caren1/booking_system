@@ -1,8 +1,10 @@
 package com.javagda17.sda.booking.booking_system.configuration;
 
 import com.javagda17.sda.booking.booking_system.model.AppUser;
+import com.javagda17.sda.booking.booking_system.model.ServiceType;
 import com.javagda17.sda.booking.booking_system.model.UserRole;
 import com.javagda17.sda.booking.booking_system.respository.AppUserRepository;
+import com.javagda17.sda.booking.booking_system.respository.ServiceTypeRepository;
 import com.javagda17.sda.booking.booking_system.respository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -26,12 +28,17 @@ public class DataInitializer implements
     private UserRoleRepository userRoleRepository;
 
     @Autowired
+    private ServiceTypeRepository serviceTypeRepository;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         checkAndLoadRoles();
         checkAndLoadUsers();
+        checkAndLoadServicesType();
+
     }
 
     private void checkAndLoadUsers() {
@@ -70,6 +77,17 @@ public class DataInitializer implements
                 "Try fixing user role called: " + role + " in Your data initializer.");
     }
 
+    private ServiceType findServiceType(String serviceType) {
+        Optional<ServiceType> serviceTypeOptional = serviceTypeRepository.findByName(serviceType);
+        if (serviceTypeOptional.isPresent()) {
+
+            return serviceTypeOptional.get();
+        }
+        throw new DataIntegrityViolationException("Service type does not exist. " +
+                "Try fixing service type called: " + serviceType + " in Your data initializer.");
+    }
+
+
     private boolean checkUser(String username) {
         return appUserRepository.findByUsername(username).isPresent();
     }
@@ -81,9 +99,29 @@ public class DataInitializer implements
         if (!checkRole("ROLE_ADMIN")) {
             createRole("ROLE_ADMIN");
         }
-        if (!checkRole("ROLE_SPY")) {
-            createRole("ROLE_SPY");
+        if (!checkRole("ROLE_EMPLOYEE")) {
+            createRole("ROLE_EMPLOYEE");
         }
+    }
+    private void checkAndLoadServicesType() {
+        if (!checkServiceType("Wynajem sali")) {
+            createServiceType("Wynajem sali", 25.00D);
+        }
+        if (!checkServiceType("Spotkanie z prawnikiem")) {
+            createServiceType("Spotkanie z prawnikiem", 50.00D);
+        }
+        if (!checkServiceType("Spotkanie z ksiegowa")) {
+            createServiceType("Spotkanie z ksiegowa", 40.00D);
+        }
+    }
+
+    private boolean checkServiceType(String serviceType){
+        return serviceTypeRepository.findByName(serviceType).isPresent();
+    }
+
+    private void createServiceType(String serviceType, Double pricePer15min){
+        ServiceType createdService = new ServiceType(null, serviceType, pricePer15min);
+        serviceTypeRepository.save(createdService);
     }
 
     /**

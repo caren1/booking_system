@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.Set;
 
 @Data
@@ -27,7 +26,7 @@ public class Meeting {
     private Integer guestsQuantity;
 
     @OneToOne
-    private Duties duties;
+    private ServiceType duties;
 
     private Double totalPrice;
 

@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Duties {
+public class ServiceType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
