@@ -21,5 +21,8 @@ public class ServiceType {
     private String name;
     private Double price;
 
-
+    @Override
+    public String toString() {
+        return "Typ usługi: " + name;
+    }
 }

@@ -37,4 +37,24 @@ public class AdminUserController {
         // a po nim /userlist (bo plik html nazywa się userlist)
         return "admin/userlist";
     }
+
+    @GetMapping("/employees")
+    public String getEmployeesList(Model model) {
+        List<AppUser> employees = appUserService.getAllUsers();
+
+        model.addAttribute("employees_list", employees);
+
+//        model.addAttribute("employees", employees.stream()
+//                .map(user -> user.getUserRoles().stream().map(role -> role.getName()).collect(Collectors.toList()))
+//                .map(String::valueOf)
+//                .collect(Collectors.toList()));
+
+        model.addAttribute("employees_services", employees.stream()
+                .map(appUser -> appUser.getEmployeeServices().getServiceTypes().iterator().next().getName()));
+
+
+        return "admin/employeeslist";
+
+
+    }
 }

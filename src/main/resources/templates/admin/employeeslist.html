@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+</head>
+<body>
+
+<th:block th:include="template :: navigator"/>
+<main role="main" class="container">
+    <h2>User Management Page</h2>
+
+    <div class="row col-md-12">
+        <div class="row col-md-12">
+            <div class="col-md-1">Name</div>
+            <div class="col-md-1">Surname</div>
+            <div class="col-md-2">Email</div>
+            <div class="col-md-2">Phone number</div>
+            <div class="col-md-6">Service</div>
+
+        </div>
+        <div class="row col-md-12" th:each="user,iter : ${employees_list}">
+            <div th:if="${user.getEmployeeServices() != null}" class="col-md-1" th:text="${user.getName()}"></div>
+            <div th:if="${user.getEmployeeServices() != null}" class="col-md-1" th:text="${user.getSurname()}"></div>
+            <div th:if="${user.getEmployeeServices() != null}" class="col-md-2" th:text="${user.getEmail()}"></div>
+            <div th:if="${user.getEmployeeServices() != null}"class="col-md-2" th:text="${user.getPhoneNumber()}"></div>
+            <div th:if="${user.getEmployeeServices() != null}"class="col-md-6" th:text="${user.getEmployeeServices().getServiceTypes().iterator().next()}"></div>
+            <div th:if="${user.getEmployeeServices() != null}"class="col-md-6" th:text="${user.getEmployeeServices().getServiceTypes().iterator().next()}"></div>
+
+
+         </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>
