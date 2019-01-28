@@ -1,9 +1,11 @@
 package com.javagda17.sda.booking.booking_system.configuration;
 
 import com.javagda17.sda.booking.booking_system.model.AppUser;
+import com.javagda17.sda.booking.booking_system.model.Hall;
 import com.javagda17.sda.booking.booking_system.model.ServiceType;
 import com.javagda17.sda.booking.booking_system.model.UserRole;
 import com.javagda17.sda.booking.booking_system.respository.AppUserRepository;
+import com.javagda17.sda.booking.booking_system.respository.HallRepository;
 import com.javagda17.sda.booking.booking_system.respository.ServiceTypeRepository;
 import com.javagda17.sda.booking.booking_system.respository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class DataInitializer implements
     private ServiceTypeRepository serviceTypeRepository;
 
     @Autowired
+    private HallRepository hallRepository;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -38,6 +43,7 @@ public class DataInitializer implements
         checkAndLoadRoles();
         checkAndLoadUsers();
         checkAndLoadServicesType();
+        checkAndLoadHalls();
 
     }
 
@@ -123,6 +129,26 @@ public class DataInitializer implements
         ServiceType createdService = new ServiceType(null, serviceType, pricePer15min);
         serviceTypeRepository.save(createdService);
     }
+
+    private void checkAndLoadHalls() {
+        if (!checkHall("Gold")) {
+            createHall("Gold");
+        }
+        if (!checkHall("Silver")) {
+            createHall("Silver");
+        }
+    }
+
+        private void createHall(String hallName){
+            Hall createdHall = new Hall(null, hallName, new HashSet<>());
+            hallRepository.save(createdHall);
+        }
+
+    private boolean checkHall(String hallName){
+        return hallRepository.findByHallName(hallName).isPresent();
+    }
+
+
 
     /**
      * Tworzenie roli użytkownika.

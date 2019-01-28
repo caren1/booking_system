@@ -23,10 +23,10 @@
             <div class="col-md-2">Company Adress</div>
         </div>
         <div class="row col-md-12" th:each="user,iter : ${user_list}">
-            <div class="col-md-1" th:text="${user.getName()}"></div>
-            <div class="col-md-1" th:text="${user.getSurname()}"></div>
-            <div class="col-md-2" th:text="${user.getEmail()}"></div>
-            <div class="col-md-2" th:text="${user.getPhoneNumber()}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-1" th:text="${user.getName()}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-1" th:text="${user.getSurname()}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getEmail()}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getPhoneNumber()}"></div>
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getCompanyName()}"></div>
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getNIP()}"></div>
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getAddress()}"></div>

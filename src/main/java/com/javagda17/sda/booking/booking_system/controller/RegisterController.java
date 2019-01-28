@@ -60,7 +60,7 @@ public class RegisterController {
         if (!result) {
             return "redirect:/admin/register?error=Error while registering. Probably username exists.";
         }
-        return "redirect:/admin/users";
+        return "redirect:/admin/employees";
     }
 
 

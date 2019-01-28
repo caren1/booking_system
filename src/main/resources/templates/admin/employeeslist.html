@@ -27,9 +27,6 @@
             <div th:if="${user.getEmployeeServices() != null}" class="col-md-2" th:text="${user.getEmail()}"></div>
             <div th:if="${user.getEmployeeServices() != null}"class="col-md-2" th:text="${user.getPhoneNumber()}"></div>
             <div th:if="${user.getEmployeeServices() != null}"class="col-md-6" th:text="${user.getEmployeeServices().getServiceTypes().iterator().next()}"></div>
-            <div th:if="${user.getEmployeeServices() != null}"class="col-md-6" th:text="${user.getEmployeeServices().getServiceTypes().iterator().next()}"></div>
-
-
          </div>
         </div>
     </div>

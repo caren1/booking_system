@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,11 +22,14 @@ public class Meeting {
 
     private String title;
 
-    private LocalDateTime start;
+    private String start;
 
-    private LocalDateTime end;
+    private String end;
 
     private Integer guestsQuantity;
+
+    @ManyToOne
+    private Hall hall;
 
     @OneToOne
     private ServiceType serviceType;
@@ -33,12 +38,5 @@ public class Meeting {
 
     @ManyToMany
     private Set<AppUser> participantSet = new HashSet<>();
-
-
-
-
-
-
-
 
 }

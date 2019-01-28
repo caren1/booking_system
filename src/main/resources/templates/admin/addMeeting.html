@@ -1,0 +1,54 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>Register Form</title>
+</head>
+<body>
+<!--i18n-->
+<th:block th:include="template :: navigator"/>
+<th:block th:include="template :: message"/>
+<main role="main" class="container">
+    <h1 class="table-head-title">Register Page</h1>
+    <form th:action="@{/addmeeting}" method="post">
+        <div class="form-group">
+            <label for="title">Meeting Name</label>
+            <input class="form-control" type="text" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="start">Start</label>
+            <input class="form-control" type="text" id="start" name="start">
+        </div>
+        <div class="form-group">
+            <label for="end">End</label>
+            <input class="form-control" type="text" id="end" name="end">
+        </div>
+        <div class="form-group">
+            <label for="guestsQuantity">How many quests?</label>
+            <input class="form-control" type="number" id="guestsQuantity" name="guestsQuantity">
+        </div>
+        <div class="form-group">
+            <label for="NIP">NIP of Client's Company</label>
+            <input class="form-control" type="text" id="NIP" name="NIP">
+        </div>
+        <div>
+            <select name="serviceType">
+                <option value="lawyer">Spotkanie z prawnikiem</option>
+                <option value="accountant">Spotkanie z księgową</option>
+                <option value="hallBooking">Wynajem sali</option>
+            </select>
+        </div>
+        <div>
+            <select name="hallName">
+                <option value="Gold">Sala "GOLD"</option>
+                <option value="Silver">Sala "SILVER"</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+</main>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>
