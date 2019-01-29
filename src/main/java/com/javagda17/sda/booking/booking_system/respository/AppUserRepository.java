@@ -13,7 +13,10 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
     Optional<AppUser> findById(Long id); //
 
     Optional<AppUser> findAllByUserRolesIs(String role);
+
     List<AppUser> getAllByEmployeeServicesIsNotNull();
+
+    Optional<AppUser> findAppUserByCompany_NIP(String NIP);
 
 
 }

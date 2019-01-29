@@ -1,10 +1,7 @@
 package com.javagda17.sda.booking.booking_system.service;
 
 import com.javagda17.sda.booking.booking_system.model.*;
-import com.javagda17.sda.booking.booking_system.model.dto.AppUserDto;
-import com.javagda17.sda.booking.booking_system.model.dto.CompanyDto;
-import com.javagda17.sda.booking.booking_system.model.dto.ServiceTypeDto;
-import com.javagda17.sda.booking.booking_system.model.dto.WorkingHoursDto;
+import com.javagda17.sda.booking.booking_system.model.dto.*;
 import com.javagda17.sda.booking.booking_system.respository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolationException;
 import java.util.List;
+import java.util.Optional;
 
+@SuppressWarnings("ALL")
 @Service
 public class AppUserService {
 
@@ -118,5 +117,14 @@ public class AppUserService {
 
     public List<AppUser> getAllUsers() {
         return appUserRepository.findAll();
+    }
+
+    public void update(Long id, EditAllUserDto editAllUserDto) {
+
+
+    }
+
+    public Optional<AppUser> getUserById(Long id) {
+        return appUserRepository.findById(id);
     }
 }

@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    password: Pitersql
+    password: root
     url: jdbc:mysql://localhost:3306/booking_system?serverTimezone=UTC
   jpa:
     hibernate:

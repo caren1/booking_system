@@ -21,9 +21,9 @@ public class Meeting {
 
     private String title;
 
-    private String start;
+    private LocalDateTime start;
 
-    private String end;
+    private LocalDateTime end;
 
     private Integer guestsQuantity;
 

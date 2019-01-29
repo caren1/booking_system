@@ -19,8 +19,9 @@
             <div class="col-md-2">Email</div>
             <div class="col-md-2">Phone number</div>
             <div class="col-md-2">Company Name</div>
-            <div class="col-md-2">Company NIP</div>
+            <div class="col-md-1">NIP</div>
             <div class="col-md-2">Company Adress</div>
+            <div class="col-md-1">Action</div>
         </div>
         <div class="row col-md-12" th:each="user,iter : ${user_list}">
             <div th:if="${user.getCompany() != null}" class="col-md-1" th:text="${user.getName()}"></div>
@@ -28,11 +29,11 @@
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getEmail()}"></div>
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getPhoneNumber()}"></div>
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getCompanyName()}"></div>
-            <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getNIP()}"></div>
+            <div th:if="${user.getCompany() != null}" class="col-md-1" th:text="${user.getCompany().getNIP()}"></div>
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getAddress()}"></div>
-
-            <div th:if="${user.getCompany() == null}" class="col-md-8">
-            </div>
+            <div th:if="${user.getCompany() != null}" class="col-md-1">
+                <a th:href="@{'/clientUpdateForm/' + ${user.getId()}}" class="button">Edit</a>
+         </div>
         </div>
     </div>
 </main>

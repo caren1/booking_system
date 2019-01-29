@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>Register Form</title>
+</head>
+<body>
+<!--i18n-->
+<th:block th:include="template :: navigator"/>
+<th:block th:include="template :: message"/>
+<main role="main" class="container">
+    <h1 class="table-head-title">Client Update Page</h1>
+    <form th:action="@{/'updateClient/' + ${userid}}" method="post" th:object="${editedUser}">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" id="name" name="name" th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input class="form-control" type="text" id="surname" name="surname" th:field="*{surname}">
+        </div>
+        <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input class="form-control" type="text" id="email" name="email" th:field="*{email}">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input class="form-control" type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" th:field="*{password}">
+        </div>
+        <div class="form-group">
+            <label for="password-confirm">Password Confirm</label>
+            <input class="form-control" type="password" id="password-confirm" name="passwordConfirm" >
+        </div>
+
+        <div class="form-group">
+            <label for="companyName">Company name</label>
+            <input class="form-control" type="text" id="companyName" name="companyName" th:field="*{companyName}">
+        </div>
+        <div class="form-group">
+            <label for="NIP">NIP of your company</label>
+            <input class="form-control" type="text" id="NIP" name="NIP" th:field="*{NIP}">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input class="form-control" type="text" id="address" name="address" th:field="*{address}">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+</main>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>
