@@ -1,8 +1,6 @@
 package com.javagda17.sda.booking.booking_system.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -11,7 +9,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -32,11 +31,15 @@ public class Meeting {
     private Hall hall;
 
     @OneToOne
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private ServiceType serviceType;
 
     private Double totalPrice;
 
     @ManyToMany
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<AppUser> participantSet = new HashSet<>();
 
 }

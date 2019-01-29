@@ -1,9 +1,6 @@
 package com.javagda17.sda.booking.booking_system.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -32,15 +29,23 @@ public class AppUser {
     private String phoneNumber;
 
     @OneToOne
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Company company;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set <UserRole> userRoles = new HashSet<>();
 
     @ManyToMany(mappedBy = "participantSet")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set <Meeting> meetingSet = new HashSet<>();
 
     @OneToOne
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private EmployeeServices employeeServices;
 
 

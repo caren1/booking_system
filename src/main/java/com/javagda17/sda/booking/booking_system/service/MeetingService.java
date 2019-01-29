@@ -70,12 +70,13 @@ public class MeetingService {
                 if (employee.getEmployeeServices().getServiceTypes().iterator().next().getName().equals("Spotkanie z prawnikiem")){
 
                     meeting.getParticipantSet().add(employee);
-                    meeting.setServiceType(serviceType1);
+
                     meetingRepository.save(meeting);
                     employee.getMeetingSet().add(meeting);
                     appUserRepository.save(employee);
                     hall.getMeetingSet().add(meeting);
                     hallRepository.save(hall);
+                    meeting.setServiceType(serviceType1);
                 }
             }
         }else if (serviceType1.getName().equals("Spotkanie z ksiegowa")){
@@ -84,19 +85,21 @@ public class MeetingService {
                 if (employee.getEmployeeServices().getServiceTypes().iterator().next().getName().equals("Spotkanie z ksiegowa")){
 
                     meeting.getParticipantSet().add(employee);
-                    meeting.setServiceType(serviceType1);
+
                     meetingRepository.save(meeting);
                     employee.getMeetingSet().add(meeting);
                     appUserRepository.save(employee);
                     hall.getMeetingSet().add(meeting);
                     hallRepository.save(hall);
+                    meeting.setServiceType(serviceType1);
                 }
             }
         }else if (serviceType1.getName().equals("Wynajem sali")){
-            meeting.setServiceType(serviceType1);
+
             meetingRepository.save(meeting);
             hall.getMeetingSet().add(meeting);
             hallRepository.save(hall);
+            meeting.setServiceType(serviceType1);
             }
 
         //todo: dodac Klienta na podstawie NIP
@@ -104,6 +107,7 @@ public class MeetingService {
         //todo: do Klienta dodac meeting
 
         try {
+            meetingRepository.save(meeting);
 
 
 

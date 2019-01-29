@@ -1,8 +1,6 @@
 package com.javagda17.sda.booking.booking_system.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -22,12 +20,18 @@ public class EmployeeServices {
     private String employeeServicesName;
 
     @OneToOne
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private WorkingHours workingHours;
 
     @OneToMany
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<UnusualDays>daysOff = new HashSet<>();
 
     @OneToMany
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set <ServiceType> serviceTypes = new HashSet<>();
 
 }

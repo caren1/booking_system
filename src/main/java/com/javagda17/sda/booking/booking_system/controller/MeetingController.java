@@ -27,13 +27,13 @@ public class MeetingController {
     @PostMapping("/addmeeting")
     public String submitMeetingForm(MeetingDto meetingDto, String serviceType, String NIP, String hallName){
         if (meetingDto.getTitle().isEmpty() || meetingDto.getStart().isEmpty() || meetingDto.getEnd().isEmpty() || hallName.isEmpty()) {
-            return "redirect:/admin/meetingform?error=Fill all fields";
+            return "redirect:/meetingform?error=Fill all fields";
         }
 
         boolean result = meetingService.addMeeting(meetingDto, serviceType, NIP, hallName);
         if (!result) {
-            return "redirect:/admin/meetingform?error=Error while adding. Try again.";
+            return "redirect:/meetingform?error=Error while adding. Try again.";
         }
-        return "redirect:/index";
+        return "redirect:/";
     }
 }
