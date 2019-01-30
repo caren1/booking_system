@@ -143,4 +143,7 @@ public class MeetingService {
         return true;
     }
 
+    public List<Meeting> getAllUsers() {
+        return meetingRepository.findAll();
+    }
 }

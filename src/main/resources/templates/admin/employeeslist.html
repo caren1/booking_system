@@ -18,15 +18,20 @@
             <div class="col-md-1">Surname</div>
             <div class="col-md-2">Email</div>
             <div class="col-md-2">Phone number</div>
-            <div class="col-md-6">Service</div>
+            <div class="col-md-5">Service</div>
+            <div class="col-md-1">Actions</div>
 
         </div>
-        <div class="row col-md-12" th:each="user,iter : ${employees_list}">
-            <div th:if="${user.getEmployeeServices() != null}" class="col-md-1" th:text="${user.getName()}"></div>
-            <div th:if="${user.getEmployeeServices() != null}" class="col-md-1" th:text="${user.getSurname()}"></div>
-            <div th:if="${user.getEmployeeServices() != null}" class="col-md-2" th:text="${user.getEmail()}"></div>
-            <div th:if="${user.getEmployeeServices() != null}"class="col-md-2" th:text="${user.getPhoneNumber()}"></div>
-            <div th:if="${user.getEmployeeServices() != null}"class="col-md-6" th:text="${user.getEmployeeServices().getServiceTypes().iterator().next()}"></div>
+        <div class="row col-md-12" th:each="employee,iter : ${employees_list}">
+            <div th:if="${employee.getEmployeeServices() != null}" class="col-md-1" th:text="${employee.getName()}"></div>
+            <div th:if="${employee.getEmployeeServices() != null}" class="col-md-1" th:text="${employee.getSurname()}"></div>
+            <div th:if="${employee.getEmployeeServices() != null}" class="col-md-2" th:text="${employee.getEmail()}"></div>
+            <div th:if="${employee.getEmployeeServices() != null}" class="col-md-2" th:text="${employee.getPhoneNumber()}"></div>
+            <div th:if="${employee.getEmployeeServices() != null}" class="col-md-5" th:text="${employee.getEmployeeServices().getServiceTypes().iterator().next()}"></div>
+            <div th:if="${employee.getEmployeeServices() != null}" class="col-md-1">
+                <a th:href="@{'/employeeUpdateForm/' + ${employee.getId()}}" class="button">Edit Emp.</a>
+                <a th:href="@{'/employeeRemove/' + ${employee.getId()}}" class="button">Remove Emp.</a>
+            </div>
          </div>
         </div>
     </div>

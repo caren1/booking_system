@@ -1,6 +1,7 @@
 package com.javagda17.sda.booking.booking_system.controller;
 
 import com.javagda17.sda.booking.booking_system.model.AppUser;
+import com.javagda17.sda.booking.booking_system.model.Meeting;
 import com.javagda17.sda.booking.booking_system.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ public class AdminUserController {
 
     @Autowired
     private AppUserService appUserService;
+
 
     // adres na który trzeba wejść:
     // /admin/users
@@ -57,4 +59,6 @@ public class AdminUserController {
 
 
     }
+
+
 }

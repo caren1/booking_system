@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+</head>
+<body>
+
+<th:block th:include="template :: navigator"/>
+<main role="main" class="container">
+    <h2>User Management Page</h2>
+
+    <div class="row col-md-12">
+        <div class="row col-md-12">
+            <div class="col-md-1">Title</div>
+            <div class="col-md-1">Hall Name</div>
+            <div class="col-md-2">Service Type</div>
+            <div class="col-md-2">Start Date</div>
+            <div class="col-md-2">End Date</div>
+            <div class="col-md-1">Guests</div>
+            <div class="col-md-2">Participants</div>
+            <div class="col-md-1">Actions</div>
+        </div>
+        <div class="row col-md-12" th:each="meeting,iter : ${meetings_list}" >
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-1" th:text="${meeting.getTitle()}"></div>
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-1" th:text="${meeting.getHall().getHallName()}"></div>
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-2" th:text="${meeting.getServiceType().getName()}"></div>
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-2" th:text="${meeting.getStart().toString()}"></div>
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-2" th:text="${meeting.getEnd().toString()}"></div>
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-1" th:text="${meeting.getGuestsQuantity().toString()}"></div>
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-2" th:each="guest,iter : ${participants_list}" th:text="${guest}"></div>
+            <div th:if="${meeting.getServiceType() != null}" class="col-md-1">
+                <a th:href="@{'/clientUpdateForm/' + ${meeting.getId()}}" class="button">Edit</a>
+                <a th:href="@{'/clientRemove/' + ${meeting.getId()}}" class="button">Remove</a>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>

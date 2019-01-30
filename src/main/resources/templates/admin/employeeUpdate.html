@@ -11,8 +11,8 @@
 <th:block th:include="template :: navigator"/>
 <th:block th:include="template :: message"/>
 <main role="main" class="container">
-    <h1 class="table-head-title">Client Update Page</h1>
-    <form th:action="@{'/updateClient/' + ${userid}}" method="post" th:object="${editedUser}">
+    <h1 class="table-head-title">Employee Update Page</h1>
+    <form th:action="@{'/updateEmployee/' + ${employeeid}}" method="post" th:object="${editedEmployee}">
         <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" type="text" id="name" name="name" th:field="*{name}">
@@ -31,24 +31,19 @@
         </div>
         <div class="form-group">
             <label for="oldPassword">Old Password</label>
-            <input class="form-control" type="password" id="oldPassword" name="oldPassword" >
+            <input class="form-control" type="password" id="oldPassword" name="oldPassword">
         </div>
         <div class="form-group">
             <label for="newPassword">New Password</label>
-            <input class="form-control" type="password" id="newPassword" name="newPassword" >
-        </div>
-
-        <div class="form-group">
-            <label for="companyName">Company name</label>
-            <input class="form-control" type="text" id="companyName" name="companyName" th:field="*{companyName}">
+            <input class="form-control" type="password" id="newPassword" name="newPassword">
         </div>
         <div class="form-group">
-            <label for="NIP">NIP of your company</label>
-            <input class="form-control" type="text" id="NIP" name="NIP" th:field="*{NIP}">
+            <label for="startingHour">Starting hour</label>
+            <input class="form-control" type="number" id="startingHour" name="startingHour" th:field="*{startingHour}">
         </div>
         <div class="form-group">
-            <label for="address">Address</label>
-            <input class="form-control" type="text" id="address" name="address" th:field="*{address}">
+            <label for="howManyHours">How many hours?</label>
+            <input class="form-control" type="number" id="howManyHours" name="howManyHours" th:field="*{howManyHours}">
         </div>
 
         <button class="btn btn-primary" type="submit">Update</button>
@@ -56,4 +51,4 @@
 </main>
 <th:block th:include="template :: scripts_footer"/>
 </body>
-</html>
+</html></html>

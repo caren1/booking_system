@@ -10,10 +10,14 @@ import org.springframework.stereotype.Service;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @SuppressWarnings("ALL")
 @Service
 public class AppUserService {
+
+    @Autowired
+    private MeetingRepository meetingRepository;
 
     @Autowired
     private AppUserRepository appUserRepository;
@@ -32,6 +36,9 @@ public class AppUserService {
 
     @Autowired
     private EmployeeServicesRepository employeeServicesRepository;
+
+    @Autowired
+    private HallRepository hallRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -119,12 +126,127 @@ public class AppUserService {
         return appUserRepository.findAll();
     }
 
-    public void update(Long id, EditAllUserDto editAllUserDto) {
+    public boolean updateC(Long id, ClientUpdateAllDto updatedClientDto) {
 
+        Optional<AppUser> appUserOptional = appUserRepository.findById(id);
+        if (appUserOptional.isPresent()) {
+            AppUser clientToUpdate = appUserOptional.get();
+            if (bCryptPasswordEncoder.matches(updatedClientDto.getOldPassword(), clientToUpdate.getPassword())) {
+                clientToUpdate.setPassword(bCryptPasswordEncoder.encode(updatedClientDto.getNewPassword()));
+                clientToUpdate.setName(updatedClientDto.getName());
+                clientToUpdate.setSurname(updatedClientDto.getSurname());
+                clientToUpdate.setEmail(updatedClientDto.getEmail());
+                clientToUpdate.setPhoneNumber(updatedClientDto.getPhoneNumber());
+
+                Optional<Company> companyOptional = companyRepository.findById(clientToUpdate.getCompany().getId());
+                if (companyOptional.isPresent()) {
+                    Company company = companyOptional.get();
+                    company.setCompanyName(updatedClientDto.getCompanyName());
+                    company.setNIP(updatedClientDto.getNIP());
+                    company.setAddress(updatedClientDto.getAddress());
+                    companyRepository.save(company);
+                    appUserRepository.save(clientToUpdate);
+                }
+                return true;
+            }
+            return false;
+
+        }
+        return false;
 
     }
 
     public Optional<AppUser> getUserById(Long id) {
         return appUserRepository.findById(id);
     }
+
+
+    public boolean removeC(Long id) {
+        Optional<AppUser> appUserToRemoveOptional = appUserRepository.findById(id);
+        Optional<Company> companyToRemoveOptional = companyRepository.findById(appUserToRemoveOptional.get().getCompany().getId());
+        if (appUserToRemoveOptional.isPresent()) {
+            companyRepository.delete(companyToRemoveOptional.get());
+            while (appUserToRemoveOptional.get().getMeetingSet().iterator().hasNext()) {
+
+                Meeting meeting = appUserToRemoveOptional.get().getMeetingSet().iterator().next();
+                Set<AppUser> participantList = meeting.getParticipantSet();
+
+                for (AppUser user : participantList) {
+                    user.getMeetingSet().remove(meeting);
+                }
+                Hall hall = meeting.getHall();
+                hall.getMeetingSet().remove(meeting);
+                meetingRepository.delete(meeting);
+                hallRepository.save(hall);
+
+            }
+            appUserRepository.delete(appUserToRemoveOptional.get());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeEm(Long id) {
+        Optional<AppUser> appUserToRemoveOptional = appUserRepository.findById(id);
+        Optional<EmployeeServices> employeeServicesOptional = employeeServicesRepository.findById(appUserToRemoveOptional.get().getEmployeeServices().getId());
+        Optional<WorkingHours> workingHoursOptional = workingHoursRepository.findById(appUserToRemoveOptional.get().getEmployeeServices().getWorkingHours().getId());
+
+        if (appUserToRemoveOptional.isPresent()) {
+            workingHoursRepository.delete(workingHoursOptional.get());
+            while (employeeServicesOptional.get().getServiceTypes().iterator().hasNext()){
+                ServiceType serviceType = employeeServicesOptional.get().getServiceTypes().iterator().next();
+                employeeServicesOptional.get().getServiceTypes().remove(serviceType);
+            }
+            employeeServicesRepository.delete(employeeServicesOptional.get());
+            while (appUserToRemoveOptional.get().getMeetingSet().iterator().hasNext()) {
+
+                Meeting meeting = appUserToRemoveOptional.get().getMeetingSet().iterator().next();
+                Set<AppUser> participantList = meeting.getParticipantSet();
+
+                for (AppUser user : participantList) {
+                    user.getMeetingSet().remove(meeting);
+                }
+                Hall hall = meeting.getHall();
+                hall.getMeetingSet().remove(meeting);
+                meetingRepository.delete(meeting);
+                hallRepository.save(hall);
+
+            }
+            appUserRepository.delete(appUserToRemoveOptional.get());
+            return true;
+        }
+        return false;
+
+    }
+
+
+    public boolean updateE(Long id, EmployeeUpdateAllDto employeeUpdateAllDto) {
+        Optional<AppUser> appUserOptional = appUserRepository.findById(id);
+        if (appUserOptional.isPresent()) {
+            AppUser clientToUpdate = appUserOptional.get();
+            if (bCryptPasswordEncoder.matches(employeeUpdateAllDto.getOldPassword(), clientToUpdate.getPassword())) {
+                clientToUpdate.setPassword(bCryptPasswordEncoder.encode(employeeUpdateAllDto.getNewPassword()));
+                clientToUpdate.setName(employeeUpdateAllDto.getName());
+                clientToUpdate.setSurname(employeeUpdateAllDto.getSurname());
+                clientToUpdate.setEmail(employeeUpdateAllDto.getEmail());
+                clientToUpdate.setPhoneNumber(employeeUpdateAllDto.getPhoneNumber());
+
+                Optional<WorkingHours> workingHoursOptional = workingHoursRepository.findById(clientToUpdate.getEmployeeServices().getWorkingHours().getId());
+                if (workingHoursOptional.isPresent()) {
+                    WorkingHours workingHours = workingHoursOptional.get();
+                    workingHours.setStartingHour(employeeUpdateAllDto.getStartingHour());
+                    workingHours.setHowManyHours(employeeUpdateAllDto.getHowManyHours());
+                    workingHoursRepository.save(workingHours);
+                    appUserRepository.save(clientToUpdate);
+                }
+                return true;
+            }
+            return false;
+
+        }
+        return false;
+
+    }
+
+
 }

@@ -21,7 +21,7 @@
             <div class="col-md-2">Company Name</div>
             <div class="col-md-1">NIP</div>
             <div class="col-md-2">Company Adress</div>
-            <div class="col-md-1">Action</div>
+            <div class="col-md-1">Actions</div>
         </div>
         <div class="row col-md-12" th:each="user,iter : ${user_list}">
             <div th:if="${user.getCompany() != null}" class="col-md-1" th:text="${user.getName()}"></div>
@@ -33,6 +33,7 @@
             <div th:if="${user.getCompany() != null}" class="col-md-2" th:text="${user.getCompany().getAddress()}"></div>
             <div th:if="${user.getCompany() != null}" class="col-md-1">
                 <a th:href="@{'/clientUpdateForm/' + ${user.getId()}}" class="button">Edit</a>
+                <a th:href="@{'/clientRemove/' + ${user.getId()}}" class="button">Remove</a>
          </div>
         </div>
     </div>
