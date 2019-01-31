@@ -1,24 +1,57 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <th:block th:include="template :: scripts_header"/>
-    <meta charset="UTF-8">
-    <title>Register Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<!--i18n-->
 <th:block th:include="template :: navigator"/>
-<th:block th:include="template :: message"/>
-<main role="main" class="container">
-    <h1 class="table-head-title">Register choice</h1>
 
-    <a th:href="@{/clientRegisterForm}" class="button">Client Registration </a>
-    <a th:href="@{/employeeRegisterForm}" class="button">Employee Registration </a>
-    <a th:href="@{/meetingForm}" class="button">Add Meeting </a>
-
-
-</main>
+<div class="py-3 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Forma rejestracji</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4 p-4"> <a class="btn btn-primary" th:href="@{/clientRegisterForm}">Klient</a>
+                <h4 class="pt-3">Zarejestruj klienta</h4>
+                <p>Opcja pozwala na zarejestrowanie klienta wraz ze wszelkimi potrzebnymi danymi firmy.</p>
+            </div>
+            <div class="col-md-4 col-6 p-4"><a class="btn btn-primary" th:href="@{/employeeRegisterForm}">Pracownik</a>
+                <h4 class="pt-3">Zarejestruj pracownika</h4>
+                <p>Opcja pozwala na zarejestrowanie pracownika, świadczącego usługi księgowe bądź prawnicze.</p>
+            </div>
+            <div class="col-md-4 col-6 p-4"> <a class="btn btn-primary" th:href="@{/meetingForm}">Spotkanie</a>
+                <h4 class="pt-3">Zarezerwuj spotkanie</h4>
+                <p>Opcja pozwala na wybranie terminu, daty oraz godziny, sali, liczby osób oraz trzech kategorii usług : spotaknie z prawnikiem, spotaknie z księgową oraz zwykłe spotkanie.&nbsp;</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-info p-5">
+    <div class="container">
+        <div class="row">
+            <div class="p-0 col-lg-4 col-md-6">
+                <img class="img-fluid" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDW8nO9JhT_pEjebobq9pgUF2cEp0EUb1I&amp;markers=folsom+Ave+san+francisco&amp;center=folsom+Ave+san+francisco&amp;zoom=16&amp;size=640x450&amp;sensor=false&amp;scale=2"> </div>
+            <div class="col-md-5 align-self-center p-4 offset-md-1">
+                <h4>ELSAFE Sp. z o.o.</h4>
+                <p class="mb-4 text-primary">Aleja Tysiaclecia 6/4<br>Polska, Elbląg 82-300<br><u>+ 48&nbsp;</u>(123) 456-7890<br>NIP: 123-456-789-88</p>
+                <div class="row text-center">
+                    <div class="col-md-1 col-3" style="">
+                        <a href="#" target="_blank"><i class="fa fa-facebook text-primary fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <th:block th:include="template :: scripts_footer"/>
+
 </body>
+
 </html>
