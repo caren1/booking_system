@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+</head>
+<body>
+
+<th:block th:include="template :: navigator"/>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="bg-dark text-primary p-4 rounded border-light border">Lista zarezerwowanych spotkań</h1>
+                <hr class="mb-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-3">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th scope="col">Nazwa</th>
+                        <th scope="col">Sala</th>
+                        <th scope="col">Usługa</th>
+                        <th scope="col">Rozpoczęcie</th>
+                        <th scope="col">Zakończenie</th>
+                        <th scope="col">Liczba osób</th>
+                        <th scope="col">Uczestnicy</th>
+                        <th scope="col"> </th>
+                        <th scope="col"> </th>
+                    </tr>
+                    </thead>
+                    <div class="col-md-12" th:each="meeting,iter : ${meetings_list}">
+                        <tr scope="row" id="arkaGdynia">
+                            <td th:if="${meeting.getServiceType() != null}" th:text="${meeting.getTitle()}"></td>
+                            <td th:if="${meeting.getServiceType() != null}" th:text="${meeting.getHall().getHallName()}"></td>
+                            <td th:if="${meeting.getServiceType() != null}" th:text="${meeting.getServiceType().getName()}"></td>
+                            <td th:if="${meeting.getServiceType() != null}" th:text="${meeting.getStart().toString()}"></td>
+                            <td th:if="${meeting.getServiceType() != null}" th:text="${meeting.getEnd().toString()}"></td>
+                            <td th:if="${meeting.getServiceType() != null}" th:text="${meeting.getGuestsQuantity().toString()}"></td>
+                            <td th:if="${meeting.getServiceType() != null}" th:each="guest,iter : ${participants_list}" th:text="${guest}"></td>
+                            <td th:if="${meeting.getServiceType() != null}">
+                                <div>
+                                    <a th:href="@{'/meetingUpdateForm/' + ${meeting.getId()}}" class="button">Edycja</a>
+                                </div>
+                            </td>
+                            <td th:if="${meeting.getServiceType() != null}">
+                                <div>
+                                    <a th:href="@{'/meeetingRemove/' + ${meeting.getId()}}" class="button">Usun</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </div>
+                </table>
+            </div>
+        </div>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+
+</html>

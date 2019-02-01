@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
+
+<th:block th:fragment="scripts_header">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/wireframe.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/wireframe.scss}" type="text/scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+</th:block>
+
+<th:block th:fragment="scripts_footer">
+    <script th:href="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script th:href="@{/webjars/popper.js/1.14.4/popper.min.js}"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script th:href="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+</th:block>
+
+<th:block th:fragment="navigator">
+    <nav class="navbar navbar-expand-md navbar-light" >
+        <div class="container"> <a class="navbar-brand text-primary" href="#">
+            <i class="fa d-inline fa-lg fa-stop-circle"></i>
+            <b> ELSAFE</b>
+        </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbar4">
+                <ul class="navbar-nav ml-auto text-primary">
+                    <li class="nav-item"> <a class="nav-link" th:href="@{/}">Home</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#">O nas</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Oferta</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
+                    <li class="nav-item"> <a class="nav-link" sec:authorize="isAuthenticated()&& hasRole('ADMIN')" th:href="@{/admin/users}">Lista klientów</a> </li>
+                    <li class="nav-item"> <a class="nav-link" sec:authorize="isAuthenticated()&& hasRole('ADMIN')" th:href="@{/admin/employees}">Lista pracowników</a> </li>
+                    <li class="nav-item"> <a class="nav-link" sec:authorize="isAuthenticated()&& hasRole('ADMIN')" th:href="@{/meetings}">Lista spotkań</a> </li>
+                    <li class="nav-item"> <a class="nav-link" sec:authorize="isAuthenticated()&& hasRole('ADMIN')" th:href="@{/register}">Rejestracja</a></li>
+                    <li class="nav-item"> <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Wyloguj</a></li>
+                </ul>
+                <li class="btn navbar-btn ml-md-2 btn-light"> <a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/login}">Zaloguj</a></li>
+
+            </div>
+        </div>
+    </nav>
+</th:block>
+
+<!--<th:block th:fragment="message">-->
+<!--<div class="row">-->
+<!--<div class="col-md-12">-->
+<!--<h3 th:text="${message}"></h3>-->
+<!--</div>-->
+<!--</div>-->
+<!--</th:block>-->
+
+</html>

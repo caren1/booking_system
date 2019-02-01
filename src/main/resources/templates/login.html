@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+
+
+<div class="py-5 text-center w-100 h-75" style="" >
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto col-md-6 col-10 bg-white p-5 w-75 h-75">
+                <h1 class="mb-4 p-3">Panel logowania</h1>
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group"> <input type="text" class="form-control"
+                                                    placeholder="Nazwa użytkownika" id="username" name="username">
+                    </div>
+
+                    <div class="form-group mb-3"> <input type="password" class="form-control"
+                                                         placeholder="Hasło" id="password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Zaloguj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="arkaGdynia p-5">
+    <div class="container">
+        <div class="row">
+            <div class="p-0 col-lg-4 col-md-6">
+                <img class="img-fluid" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDW8nO9JhT_pEjebobq9pgUF2cEp0EUb1I&amp;markers=folsom+Ave+san+francisco&amp;center=folsom+Ave+san+francisco&amp;zoom=16&amp;size=640x450&amp;sensor=false&amp;scale=2"> </div>
+            <div class="col-md-5 align-self-center p-4 offset-md-1">
+                <h4>ELSAFE Sp. z o.o.</h4>
+                <p class="mb-4 text-primary">Aleja Tysiaclecia 6/4<br>Polska, Elbląg 82-300<br><u>+ 48&nbsp;</u>(123) 456-7890<br>NIP: 123-456-789-88</p>
+                <div class="row text-center">
+                    <div class="col-md-1 col-3" style="">
+                        <a href="#" target="_blank"><i class="fa fa-facebook text-primary fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<th:block th:include="template :: scripts_footer"/>
+</html>

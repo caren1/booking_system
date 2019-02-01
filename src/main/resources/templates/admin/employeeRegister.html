@@ -1,0 +1,79 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+
+
+<div class="py-3">
+    <div class="container">
+        <div class="row bg-dark">
+            <div class="col-md-8 p-4 bg-dark">
+                <h1 class="text-primary">Formularz rejestracji pracownika</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 p-4">
+                <h3>ELSAFE Sp. z o.o.</h3>
+                <p>Naszą misją jest kompleksowa pomoc w zakresie prowadzenia działalności i spółek z ograniczoną odpowiedzialnością.</p>
+                <p class="lead mt-3"> <b>Pomoc</b></p>
+                <p> <a href="#">+</a>48 123 456 789</p>
+                <p>pomoc@elsafe.pl</p>
+                <p class="lead mt-3"> <b>Kontakt</b></p>
+                <p>Piotr Czarnocki</p>
+                <p> <a href="#">+</a>48 123 456 798</p>
+                <p>piotr.czarnocki@elsafe.pl</p>
+                <p class="lead mt-3" contenteditable="true">Ogólne</p>
+                <p> <a href="info@elsafe.pl"></a>info@elsafe.pl</p>
+            </div>
+            <div class="col-md-7 p-4">
+                <h1 class="text-primary">Zarejestruj pracownika</h1>
+                <form th:action="@{/registerEmployee}" method="post">
+                    <div class="form-row">
+                        <div class="form-group col-md-6"> <input type="text" class="form-control" id="name"
+                                                                 name="name" placeholder="Imię" >
+                            <div class="form-group"><label></label>
+                                <div class="form-group"><label></label><input type="text" class="form-control" id="surname" name="surname" placeholder="Nazwisko"></div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 pb-0"> <input type="text" class="form-control" id="username" name="username" placeholder="Nazwa użytkownika" required="required">
+                            <div class="form-group"><label></label>
+                                <div class="form-group"><label></label><input type="password" class="form-control" id="password" name="password" placeholder="Hasło" required="required"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style=""> <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Potwierdź hasło">
+                        <div class="form-group"><label></label>
+                        </div>
+                    </div>
+                    <div class="form-group"> <input type="email" class="form-control" id="email" name="email" placeholder="E-
+mail" required="required"> </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12"> <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Telefon" required="required">
+                            <div class="form-group"><label></label><input type="number" class="form-control" id="startingHour" name="startingHour" placeholder="Godzina rozpoczęcia pracy" required="required">
+                                <div class="form-group"><label></label><input type="number" class="form-control" name="howManyHours" id="howManyHours" placeholder="Ilość godzin w pracy" required="required"></div>
+                                <div class="form-group">
+                                    <select name="serviceType" class="form-control">
+                                        <option value="lawyer">Spotkanie z prawnikiem</option>
+                                        <option value="accountant">Spotkanie z księgową</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary align-items-end justify-content-end">Wyślij</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="template :: scripts_footer"/>
+
+</body>
+</html>

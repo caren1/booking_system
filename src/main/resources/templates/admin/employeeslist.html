@@ -1,0 +1,66 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="bg-dark text-primary p-4 rounded border-light border" contenteditable="true">Lista pracowników<br></h1>
+                <hr class="mb-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-3">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th scope="col">Imię</th>
+                        <th scope="col">Nazwisko<br></th>
+                        <th scope="col">E-mail<br></th>
+                        <th scope="col">Numer telefonu<br></th>
+                        <th scope="col">Usługa</th>
+                        <th scope="col"> </th>
+                        <th scope="col"> </th>
+                    </tr>
+                    </thead>
+                    <div class="col-md-12" th:each="employee,iter : ${employees_list}">
+                        <tr scope="row" id="arkaGdynia">
+                            <td th:if="${employee.getEmployeeServices() != null}" th:text="${employee.getName()}"></td>
+                            <td th:if="${employee.getEmployeeServices() != null}" th:text="${employee.getSurname()}"></td>
+                            <td th:if="${employee.getEmployeeServices() != null}" th:text="${employee.getEmail()}"></td>
+                            <td th:if="${employee.getEmployeeServices() != null}" th:text="${employee.getPhoneNumber()}"></td>
+                            <td th:if="${employee.getEmployeeServices() != null}" th:text="${employee.getEmployeeServices().getServiceTypes().iterator().next()}"></td>
+                            <td th:if="${employee.getEmployeeServices() != null}">
+                                <div>
+                                    <a th:if="${employee.getEmployeeServices() != null}" th:href="@{'/employeeUpdateForm/' + ${employee.getId()}}" class="button">Edytuj</a>
+                                </div>
+                            </td>
+                            <td th:if="${employee.getEmployeeServices() != null}">
+                                <div>
+                                    <a th:if="${employee.getEmployeeServices() != null}" th:href="@{'/employeeRemove/' + ${employee.getId()}}" class="button">Usun</a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </div>
+                </table>
+            </div>
+        </div>
+        </tbody>
+        </table>
+    </div>
+</div>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+</head>
+<body>
+
+<th:block th:include="template :: navigator"/>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="bg-dark text-primary p-4 rounded border-light border">Lista klientów</h1>
+                <hr class="mb-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-3">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th scope="col">Imię</th>
+                        <th scope="col">Nazwisko</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Numer telefonu</th>
+                        <th scope="col">Nazwa Firmy</th>
+                        <th scope="col">NIP</th>
+                        <th scope="col">Adres</th>
+                        <th scope="col"> </th>
+                        <th scope="col"> </th>
+                    </tr>
+                    </thead>
+                    <div class="col-md-12" th:each="user,iter : ${user_list}">
+                        <tr scope="row" id="arkaGdynia">
+                            <td th:if="${user.getCompany() != null}"  th:text="${user.getName()}"></td>
+                            <td th:if="${user.getCompany() != null}"  th:text="${user.getSurname()}"></td>
+                            <td th:if="${user.getCompany() != null}"  th:text="${user.getEmail()}"></td>
+                            <td th:if="${user.getCompany() != null}"  th:text="${user.getPhoneNumber()}"></td>
+                            <td th:if="${user.getCompany() != null}"  th:text="${user.getCompany().getCompanyName()}"></td>
+                            <td th:if="${user.getCompany() != null}"  th:text="${user.getCompany().getNIP()}"></td>
+                            <td th:if="${user.getCompany() != null}"  th:text="${user.getCompany().getAddress()}"></td>
+                            <td th:if="${user.getCompany() != null}">
+                                <div>
+                                    <a th:href="@{'/clientUpdateForm/' + ${user.getId()}}" class="button">Edit</a>
+                                </div>
+                            </td>
+                            <td th:if="${user.getCompany() != null}">
+                                <div>
+                                    <a th:href="@{'/clientRemove/' + ${user.getId()}}" class="button">Remove</a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </div>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+
+</html>
