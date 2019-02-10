@@ -68,13 +68,13 @@ public class MeetingController {
         return "redirect:/";
     }
 
-    @GetMapping("/meeetingRemove/{meetingid}")
+    @GetMapping("/meetingRemove/{meetingid}")
     public String getMeetingRemovePage(@PathVariable(name = "meetingid") Long id, Model model) {
         model.addAttribute("meetingid", id);
         Optional<Meeting> meetingOptional = meetingService.getMeetingById(id);
         if (meetingOptional.isPresent()){
             meetingService.remove(id);
-            return "redirect:/admin/meetings";
+            return "redirect:/meetings";
         }
 
         return "redirect:/error";

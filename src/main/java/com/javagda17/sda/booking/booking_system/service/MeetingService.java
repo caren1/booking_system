@@ -244,7 +244,24 @@ public class MeetingService {
         return meetingRepository.findById(id);
     }
 
-    public void remove(Long id) {
+    public boolean remove(Long id) {
+        Optional<Meeting> meetingToRemoveOptional = meetingRepository.findById(id);
+        if (meetingToRemoveOptional.isPresent()) {
+            Meeting meetingToRemove=meetingToRemoveOptional.get();
+            Set<AppUser> participantSet = meetingToRemove.getParticipantSet();
+            Hall hall = meetingToRemove.getHall();
+            while (meetingToRemove.getParticipantSet().iterator().hasNext()) {
+                AppUser appUser = meetingToRemove.getParticipantSet().iterator().next();
+                appUser.getMeetingSet().remove(meetingToRemove);
+                meetingToRemove.getParticipantSet().remove(appUser);
+                appUserRepository.save(appUser);
+            }
+            hall.getMeetingSet().remove(meetingToRemove);
+            hallRepository.save(hall);
+            meetingRepository.delete(meetingToRemove);
+            return true;
+        }
+        return false;
     }
 
 
