@@ -26,6 +26,9 @@ public class AppUserService {
     private ServiceTypeRepository serviceTypeRepository;
 
     @Autowired
+    private ServiceTypeService serviceTypeService;
+
+    @Autowired
     private CompanyRepository companyRepository;
 
     @Autowired
@@ -79,20 +82,18 @@ public class AppUserService {
     public boolean register(AppUserDto dto, WorkingHoursDto workingHoursDto, String serviceType) {
 
         EmployeeServices employeeServices = new EmployeeServices();
-        employeeServices.setEmployeeServicesName(dto.getName() + " " + dto.getSurname() + "employee service");
-
+        employeeServices.setEmployeeServicesName(dto.getName() + " " + dto.getSurname() + " employee services");
 
         WorkingHours workingHours = new WorkingHours();
         workingHours.setStartingHour(workingHoursDto.getStartingHour());
         workingHours.setHowManyHours(workingHoursDto.getHowManyHours());
 
-        ServiceType serviceType1 = new ServiceType();
 
         if (serviceType.equals("lawyer")) {
-            serviceType1 = serviceTypeRepository.findByName("Spotkanie z prawnikiem").get();
+            employeeServices.getServiceTypes().add(serviceTypeService.getLawyerServiceType());
 
         } else if (serviceType.equals("accountant")) {
-            serviceType1 = serviceTypeRepository.findByName("Spotkanie z ksiegowa").get();
+            employeeServices.getServiceTypes().add(serviceTypeService.getAccountantServiceType());
         }
 
         AppUser appUser = new AppUser();
@@ -106,11 +107,12 @@ public class AppUserService {
 
         try {
             appUserRepository.saveAndFlush(appUser);
+            employeeServicesRepository.save(employeeServices);
             workingHoursRepository.saveAndFlush(workingHours);
 
             employeeServices.setWorkingHours(workingHours);
-            employeeServices.getServiceTypes().add(serviceType1);
             employeeServicesRepository.save(employeeServices);
+
 
             appUser.setEmployeeServices(employeeServices);
             appUserRepository.save(appUser);

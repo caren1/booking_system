@@ -1,10 +1,13 @@
 package com.javagda17.sda.booking.booking_system.controller;
 
 import com.javagda17.sda.booking.booking_system.model.AppUser;
+import com.javagda17.sda.booking.booking_system.model.Meeting;
 import com.javagda17.sda.booking.booking_system.model.dto.ClientUpdateAllDto;
 import com.javagda17.sda.booking.booking_system.model.dto.EmployeeUpdateAllDto;
+import com.javagda17.sda.booking.booking_system.model.dto.MeetingUpdateDto;
 import com.javagda17.sda.booking.booking_system.respository.AppUserRepository;
 import com.javagda17.sda.booking.booking_system.service.AppUserService;
+import com.javagda17.sda.booking.booking_system.service.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,9 @@ public class UpdateAndRemoveController {
 
     @Autowired
     private AppUserService appUserService;
+
+    @Autowired
+    private MeetingService meetingService;
 
     @Autowired
     private AppUserRepository appUserRepository;
@@ -109,6 +115,8 @@ public class UpdateAndRemoveController {
 
         return "redirect:/error";
     }
+
+
 
 
 

@@ -83,15 +83,7 @@ public class DataInitializer implements
                 "Try fixing user role called: " + role + " in Your data initializer.");
     }
 
-    private ServiceType findServiceType(String serviceType) {
-        Optional<ServiceType> serviceTypeOptional = serviceTypeRepository.findByName(serviceType);
-        if (serviceTypeOptional.isPresent()) {
 
-            return serviceTypeOptional.get();
-        }
-        throw new DataIntegrityViolationException("Service type does not exist. " +
-                "Try fixing service type called: " + serviceType + " in Your data initializer.");
-    }
 
 
     private boolean checkUser(String username) {

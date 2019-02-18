@@ -1,0 +1,78 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+
+<div class="py-3" >
+    <div class="container">
+        <div class="row bg-dark" style="">
+            <div class="col-md-8 p-4 bg-dark">
+                <h1 class="text-primary">Formularz edycji danych spotkania</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 p-4">
+                <h3>ELSAFE Sp. z o.o.</h3>
+                <p>Naszą misją jest kompleksowa pomoc w zakresie prowadzenia działalności i spółek z ograniczoną odpowiedzialnością.</p>
+                <p class="lead mt-3"> <b>Pomoc</b></p>
+                <p> <a href="#">+</a>48 123 456 789</p>
+                <p>pomoc@elsafe.pl</p>
+                <p class="lead mt-3"> <b>Kontakt</b></p>
+                <p>Piotr Czarnocki</p>
+                <p> <a href="#">+</a>48 123 456 798</p>
+                <p>piotr.czarnocki@elsafe.pl</p>
+                <p class="lead mt-3" contenteditable="true">Ogólne</p>
+                <p> <a href="#">info@e</a>lsafe.pl</p>
+            </div>
+            <div class="col-md-7 p-4">
+                <h3 class="m-3 mb-3">Edytuj dane<br></h3>
+                <form class="pt-4" th:action="@{'/updateMeeting/' + ${meetingid}}" method="post" th:object="${editedMeeting}">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <h6 class="p-0 pt-0">Data rozpoczęcia spotkania</h6>
+                            <div class="form-group"><label></label><input type="datetime-local" class="form-control" id="start" placeholder="Data rozpoczęcia" name="start" th:field="*{start}">
+                                <div class="form-group"><label></label><input type="text" class="form-control" id="title" name="title" placeholder="Nazwa spotkania" th:field="*{title}">
+                                    <div class="form-group"><label></label><input type="text" class="form-control" id="NIP" name="NIP" placeholder="NIP firmy" th:field="*{NIP}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h6 class="">Data zakończenia spotkania<br></h6>
+                            <div class="form-group"><label></label><input type="datetime-local" class="form-control" id="end" name="end" placeholder="Data zakończenia" th:field="*{end}">
+                                <div class="form-group"><label></label><input type="number" class="form-control" id="guestsQuantity" name="guestsQuantity" placeholder="Liczba osób" th:field="*{guestsQuantity}">
+                                    <div class="form-group"><label></label><select class="form-control" id="serviceType" name="serviceType" th:field="*{serviceType}">
+                                        <option value="lawyer">Spotkanie z prawnikiem</option>
+                                        <option value="accountant">Spotkanie z księgową</option>
+                                        <option value="hallBooking">Wynajem sali</option>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="form-group">
+                                <select id="hallName" name="hallName" class="form-control" th:field="*{hallName}">
+                                    <option value="Gold">Sala Gold</option>
+                                    <option value="Silver">Sala Silver</option>
+                                </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary align-items-end" style="">Zapisz<br></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<th:block th:include="template :: scripts_footer"/>
+
+
+</html>

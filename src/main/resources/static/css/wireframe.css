@@ -4382,12 +4382,12 @@ button.bg-success:hover,
 button.bg-success:focus {
   background-color: #1e7e34 !important; }
 
-.bg-info {
+.arkaGdynia {
   background-color: #2F2D30 !important; }
 
-a.bg-info:hover, a.bg-info:focus,
-button.bg-info:hover,
-button.bg-info:focus {
+a.arkaGdynia:hover, a.arkaGdynia:focus,
+button.arkaGdynia:hover,
+button.arkaGdynia:focus {
   background-color: #151416 !important; }
 
 .bg-warning {
@@ -6437,17 +6437,17 @@ html, body {
   .bg-success .input-group-text {
     color: #fff; }
 
-.bg-info {
+.arkaGdynia {
   color: #fff; }
-  .bg-info input::-webkit-input-placeholder {
+  .arkaGdynia input::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.8); }
-  .bg-info input:-ms-input-placeholder {
+  .arkaGdynia input:-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.8); }
-  .bg-info input::-ms-input-placeholder {
+  .arkaGdynia input::-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.8); }
-  .bg-info input::placeholder {
+  .arkaGdynia input::placeholder {
     color: rgba(255, 255, 255, 0.8); }
-  .bg-info .input-group-text {
+  .arkaGdynia .input-group-text {
     color: #fff; }
 
 .bg-warning {
@@ -6478,7 +6478,8 @@ html, body {
 
 .bg-light {
   color: #212529; }
-  .bg-light input::-webkit-input-placeholder {
+  .bg-light input::-webkit-input-placeholder
+  {
     color: rgba(33, 37, 41, 0.8); }
   .bg-light input:-ms-input-placeholder {
     color: rgba(33, 37, 41, 0.8); }
@@ -6507,3 +6508,11 @@ html, body {
 
 .cover {
   min-height: 100%; }
+
+#arkaGdynia:hover{
+  background-color: #696969;
+  color: white;
+}
+
+
+

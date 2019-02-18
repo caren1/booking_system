@@ -29,7 +29,7 @@ public class EmployeeServices {
     @EqualsAndHashCode.Exclude
     private Set<UnusualDays>daysOff = new HashSet<>();
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set <ServiceType> serviceTypes = new HashSet<>();
