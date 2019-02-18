@@ -25,7 +25,9 @@ Etapy realizacji projektu:
     stworzenie bazy danych SQL oraz relacji miedzy modelami. 
 3. Implementacja wszystkich metod CRUD dla kazdego z modeli (w odpowiadajacym mu Service), dodanie Mappingow oraz metod w odpowiednich Controllerach.
    Implementacja logowania wraz z "Security Manager".
+   
 4.Tworzenie prymitywnych widokow oraz widoku tabeli spotkan (Angular) wraz z implementacja wszelkich metod/funkcjonalnosci.
+
 5.Tworzenie docelowych widoków na stronie wraz z CSS i JS (front end)
 6.?????
 
